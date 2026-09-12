@@ -46,6 +46,9 @@
 
 <Modal title="Diagnóstico do Sistema" bind:open on:close={() => (open = false)}>
   <div class="flex flex-col gap-4 text-xs font-mono" aria-busy={isLoading}>
+    <div class="flex items-center justify-center py-1">
+      <img src="/branding/logo-full.png" alt="HummTube" class="h-10 w-auto object-contain select-none" />
+    </div>
     {#if loadError}<p role="alert" class="rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-red-300">{loadError}</p>{/if}
     <div class="p-3 bg-surfaceHover/50 rounded-lg flex flex-col gap-1.5 border border-border">
       <div class="flex justify-between"><span class="text-muted">Versão:</span><span class="text-foreground">{report?.version || (isLoading ? 'Coletando…' : 'Indisponível')}</span></div>

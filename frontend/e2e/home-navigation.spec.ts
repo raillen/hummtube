@@ -39,7 +39,7 @@ test.describe('Navegação Principal & Header', () => {
 
   test('deve carregar a página inicial com título e elementos do Header', async ({ page }) => {
     await expect(page.locator('header')).toBeVisible();
-    await expect(page.locator('header').getByText('HummTube')).toBeVisible();
+    await expect(page.locator('header').getByAltText('HummTube')).toBeVisible();
 
     const searchInput = page.getByPlaceholder('Buscar no catálogo ou YouTube (Ctrl+K)...');
     await expect(searchInput).toBeVisible();

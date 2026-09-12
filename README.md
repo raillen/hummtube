@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="branding/logo-full.png" alt="HummTube Logo" width="480" />
+</p>
+
 # HummTube / HummSuite Workspace
 
 > Cliente YouTube ultra-leve, moderno e independente para Linux/Desktop, construído com **Wails v3**, **Svelte**, **Tailwind CSS**, **Lucide Icons**, **Go** e **SQLite**.

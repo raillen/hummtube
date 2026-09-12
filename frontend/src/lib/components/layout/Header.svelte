@@ -117,13 +117,16 @@
   <!-- Logo Button -->
   <button 
     type="button"
-    class="flex items-center gap-2 cursor-pointer focus:outline-none" 
+    class="flex items-center cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/40 rounded-lg p-0.5 transition-transform hover:opacity-90" 
     on:click={() => { $activePlaylistId = null; $activeChannelSelection = null; $activeTab = 'home'; }}
+    title="HummTube"
+    aria-label="Ir para a página inicial do HummTube"
   >
-    <div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white font-bold shadow-md shadow-primary/20">
-      H
-    </div>
-    <span class="font-bold text-base tracking-tight text-foreground hidden sm:inline">HummTube</span>
+    <img
+      src="/branding/logo-full.png"
+      alt="HummTube"
+      class="h-8 md:h-9 w-auto object-contain select-none"
+    />
   </button>
 
   <!-- Search Bar -->
