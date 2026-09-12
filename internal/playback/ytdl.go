@@ -60,18 +60,73 @@ func (r JSRuntime) String() string {
 }
 
 // jsRuntimeBinaries mapeia o nome usado pelo yt-dlp ao executável procurado.
-// A ordem é a política recomendada: Deno preferencial, Node e QuickJS como
-// fallbacks suportados. Bun foi removido da lista recomendada (seção 12.1).
+// A ordem é a política recomendada: Deno preferencial, Node, QuickJS e Bun como fallbacks.
 var jsRuntimeBinaries = []JSRuntime{
 	{Name: "deno", Path: "deno"},
 	{Name: "node", Path: "node"},
 	{Name: "quickjs", Path: "qjs"},
+	{Name: "bun", Path: "bun"},
 }
 
-// DetectJSRuntime returns the first usable JavaScript runtime on PATH.
+// findExecutable procura um executável pelo PATH ou locais comuns do usuário/sistema.
+func findExecutable(nameOrPath string) (string, error) {
+	if filepath.IsAbs(nameOrPath) {
+		if info, err := os.Stat(nameOrPath); err == nil && info.Mode().IsRegular() && info.Mode().Perm()&0o111 != 0 {
+			return nameOrPath, nil
+		}
+		return "", exec.ErrNotFound
+	}
+
+	if path, err := exec.LookPath(nameOrPath); err == nil {
+		return path, nil
+	}
+
+	home, _ := os.UserHomeDir()
+	var candidates []string
+	if home != "" {
+		candidates = append(candidates,
+			filepath.Join(home, ".local", "bin", nameOrPath),
+			filepath.Join(home, ".local", "share", "mise", "shims", nameOrPath),
+			filepath.Join(home, ".asdf", "shims", nameOrPath),
+			filepath.Join(home, ".cargo", "bin", nameOrPath),
+			filepath.Join(home, ".bun", "bin", nameOrPath),
+			filepath.Join(home, ".deno", "bin", nameOrPath),
+		)
+		miseMatches, _ := filepath.Glob(filepath.Join(home, ".local", "share", "mise", "installs", nameOrPath, "*", "bin", nameOrPath))
+		candidates = append(candidates, miseMatches...)
+		if nameOrPath == "node" {
+			extraNode, _ := filepath.Glob(filepath.Join(home, ".local", "share", "mise", "installs", "node", "*", "bin", "node"))
+			candidates = append(candidates, extraNode...)
+		}
+		if nameOrPath == "bun" {
+			extraBun, _ := filepath.Glob(filepath.Join(home, ".local", "share", "mise", "installs", "bun", "*", "bin", "bun"))
+			candidates = append(candidates, extraBun...)
+		}
+		if nameOrPath == "yt-dlp" {
+			extraYtdlp, _ := filepath.Glob(filepath.Join(home, ".local", "share", "mise", "installs", "python", "*", "bin", "yt-dlp"))
+			candidates = append(candidates, extraYtdlp...)
+		}
+		nvmMatches, _ := filepath.Glob(filepath.Join(home, ".nvm", "versions", "node", "*", "bin", nameOrPath))
+		candidates = append(candidates, nvmMatches...)
+	}
+	candidates = append(candidates,
+		filepath.Join("/usr", "bin", nameOrPath),
+		filepath.Join("/usr", "local", "bin", nameOrPath),
+		filepath.Join("/bin", nameOrPath),
+	)
+
+	for _, c := range candidates {
+		if info, err := os.Stat(c); err == nil && info.Mode().IsRegular() && info.Mode().Perm()&0o111 != 0 {
+			return c, nil
+		}
+	}
+	return "", exec.ErrNotFound
+}
+
+// DetectJSRuntime returns the first usable JavaScript runtime on PATH or standard directories.
 func DetectJSRuntime() JSRuntime {
 	for _, candidate := range jsRuntimeBinaries {
-		path, err := exec.LookPath(candidate.Path)
+		path, err := findExecutable(candidate.Path)
 		if err != nil {
 			continue
 		}
@@ -252,13 +307,13 @@ func resolveJSRuntime(pinned string) JSRuntime {
 		if path == "" {
 			return JSRuntime{}
 		}
-		resolved, err := exec.LookPath(path)
+		resolved, err := findExecutable(path)
 		if err != nil {
 			return JSRuntime{}
 		}
 		return JSRuntime{Name: name, Path: resolved}
 	}
-	resolved, err := exec.LookPath(binaryFor(name))
+	resolved, err := findExecutable(binaryFor(name))
 	if err != nil {
 		return JSRuntime{}
 	}

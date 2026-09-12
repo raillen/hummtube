@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"sort"
 	"strings"
@@ -459,10 +460,14 @@ func managedRuntimeComponentPath(name string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	root := filepath.Join(home, ".local", "share", "nanotube", "runtime")
-	if _, err := os.Stat(root); err != nil {
-		return "", err
+	for _, appName := range []string{"hummtube", "nanotube"} {
+		root := filepath.Join(home, ".local", "share", appName, "runtime")
+		if _, err := os.Stat(root); err == nil {
+			manager := &RuntimeManager{root: filepath.Clean(root)}
+			if path, err := manager.ComponentPath(name); err == nil && path != "" {
+				return path, nil
+			}
+		}
 	}
-	manager := &RuntimeManager{root: filepath.Clean(root)}
-	return manager.ComponentPath(name)
+	return "", exec.ErrNotFound
 }

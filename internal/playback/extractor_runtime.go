@@ -91,13 +91,22 @@ func resolveYtDlpBinary(explicitPath string) (string, string, error) {
 			candidates = append(candidates, candidate{path: managedPath, source: "managed-active"})
 		}
 		if home, err := os.UserHomeDir(); err == nil {
-			candidates = append(candidates, candidate{
-				path:   filepath.Join(home, ".local", "share", "nanotube", "runtime", "yt-dlp"),
-				source: "managed",
-			})
+			candidates = append(candidates,
+				candidate{
+					path:   filepath.Join(home, ".local", "share", "hummtube", "runtime", "yt-dlp"),
+					source: "managed",
+				},
+				candidate{
+					path:   filepath.Join(home, ".local", "share", "nanotube", "runtime", "yt-dlp"),
+					source: "managed",
+				},
+			)
 		}
-		candidates = append(candidates, candidate{path: "/usr/lib/nanotube/yt-dlp", source: "system-package"})
-		if path, err := exec.LookPath("yt-dlp"); err == nil {
+		candidates = append(candidates,
+			candidate{path: "/usr/lib/hummtube/yt-dlp", source: "system-package"},
+			candidate{path: "/usr/lib/nanotube/yt-dlp", source: "system-package"},
+		)
+		if path, err := findExecutable("yt-dlp"); err == nil {
 			candidates = append(candidates, candidate{path: path, source: "system"})
 		}
 	}
@@ -119,7 +128,7 @@ func detectJSRuntimeStatus(ctx context.Context, js JSRuntime) ComponentStatus {
 	if !js.Found() {
 		return ComponentStatus{
 			Found:   false,
-			Details: "nenhum runtime JS (deno/node/quickjs) detectado",
+			Details: "nenhum runtime JS (deno/node/quickjs/bun) detectado",
 		}
 	}
 
@@ -130,7 +139,7 @@ func detectJSRuntimeStatus(ctx context.Context, js JSRuntime) ComponentStatus {
 	}
 
 	// Probe version
-	probeCtx, cancel := context.WithTimeout(ctx, 2*time.Second)
+	probeCtx, cancel := context.WithTimeout(ctx, 5*time.Second)
 	defer cancel()
 
 	var cmd *exec.Cmd
@@ -138,6 +147,8 @@ func detectJSRuntimeStatus(ctx context.Context, js JSRuntime) ComponentStatus {
 	case "deno":
 		cmd = exec.CommandContext(probeCtx, js.Path, "--version")
 	case "node":
+		cmd = exec.CommandContext(probeCtx, js.Path, "--version")
+	case "bun":
 		cmd = exec.CommandContext(probeCtx, js.Path, "--version")
 	case "quickjs":
 		cmd = exec.CommandContext(probeCtx, js.Path, "-h")
@@ -169,6 +180,8 @@ func validJSRuntimeVersion(name, output string) bool {
 		return strings.HasPrefix(output, "deno ")
 	case "node":
 		return strings.HasPrefix(output, "v")
+	case "bun":
+		return output != ""
 	case "quickjs":
 		return output != ""
 	default:

@@ -197,8 +197,19 @@ func loadPersistedExtractionConfig(ctx context.Context, cfg playback.YtdlConfig)
 	if err != nil {
 		return cfg
 	}
-	dbPath := filepath.Join(dataDir, "nanotube-web.db")
-	if _, err := os.Stat(dbPath); err != nil {
+	candidateDBs := []string{
+		filepath.Join(dataDir, app.CurrentNamespace()+".db"),
+		filepath.Join(dataDir, "hummtube.db"),
+		filepath.Join(dataDir, "nanotube-web.db"),
+	}
+	var dbPath string
+	for _, p := range candidateDBs {
+		if _, err := os.Stat(p); err == nil {
+			dbPath = p
+			break
+		}
+	}
+	if dbPath == "" {
 		return cfg
 	}
 	db, err := storage.Open(dbPath)
@@ -269,7 +280,7 @@ func probeStorage(ctx context.Context, r *Report) error {
 }
 
 func (r *Report) Print(w io.Writer) {
-	fmt.Fprintf(w, "NanoTube Web diagnostics (v%s)\n", r.Version)
+	fmt.Fprintf(w, "HummTube diagnostics (v%s)\n", r.Version)
 	fmt.Fprintf(w, "  stack:       %s\n", r.Framework)
 	fmt.Fprintf(w, "  go:          %s (buildmode %s)\n", r.GoVersion, r.BuildMode)
 	fmt.Fprintf(w, "  display:     %s (%s)\n", r.Display, r.Session)
