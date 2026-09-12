@@ -1,0 +1,49 @@
+{
+  "name": "nanotube-web-frontend",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:hummtube": "NANOSUITE_APP=hummtube vite",
+    "dev:hummiptv": "NANOSUITE_APP=hummiptv vite",
+    "dev:hummmusic": "NANOSUITE_APP=hummmusic vite",
+    "dev:nanotube": "NANOSUITE_APP=hummtube vite",
+    "dev:nanoiptv": "NANOSUITE_APP=hummiptv vite",
+    "dev:nanomusic": "NANOSUITE_APP=hummmusic vite",
+    "build": "npm run build:all",
+    "prebuild:hummtube": "bash ../scripts/clean-frontend-target.sh hummtube",
+    "build:hummtube": "NANOSUITE_APP=hummtube vite build",
+    "prebuild:hummiptv": "bash ../scripts/clean-frontend-target.sh hummiptv",
+    "build:hummiptv": "NANOSUITE_APP=hummiptv vite build",
+    "prebuild:hummmusic": "bash ../scripts/clean-frontend-target.sh hummmusic",
+    "build:hummmusic": "NANOSUITE_APP=hummmusic vite build",
+    "prebuild:nanotube": "bash ../scripts/clean-frontend-target.sh nanotube",
+    "build:nanotube": "NANOSUITE_APP=nanotube vite build",
+    "prebuild:nanoiptv": "bash ../scripts/clean-frontend-target.sh nanoiptv",
+    "build:nanoiptv": "NANOSUITE_APP=nanoiptv vite build",
+    "prebuild:nanomusic": "bash ../scripts/clean-frontend-target.sh nanomusic",
+    "build:nanomusic": "NANOSUITE_APP=nanomusic vite build",
+    "build:all": "npm run build:hummtube && npm run build:hummiptv && npm run build:hummmusic && npm run build:nanotube && npm run build:nanoiptv && npm run build:nanomusic",
+    "preview": "vite preview",
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "test:e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "@sveltejs/vite-plugin-svelte": "^3.1.2",
+    "@tsconfig/svelte": "^5.0.4",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "svelte": "^4.2.19",
+    "svelte-check": "^3.8.6",
+    "tailwindcss": "^3.4.14",
+    "tslib": "^2.7.0",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.9"
+  },
+  "dependencies": {
+    "hls.js": "^1.5.15",
+    "lucide-svelte": "^0.453.0"
+  }
+}

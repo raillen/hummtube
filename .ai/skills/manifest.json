@@ -1,0 +1,218 @@
+{
+  "generated_by": {
+    "prumo": "0.2.0"
+  },
+  "skills": [
+    "architecture-quality",
+    "benchmarking",
+    "clean-code",
+    "code-review",
+    "cognitive-clarity",
+    "competitor-analysis",
+    "component-specification",
+    "dependency-management",
+    "design-research",
+    "design-system",
+    "design-tokens",
+    "documentation",
+    "error-handling",
+    "focus-management",
+    "git-workflow",
+    "goal-management",
+    "information-architecture",
+    "interaction-design",
+    "interaction-research",
+    "keyboard-accessibility",
+    "lang-css",
+    "lang-go",
+    "lang-sql",
+    "lang-typescript",
+    "lean-progressive-context",
+    "memory-management",
+    "motion-accessibility",
+    "performance-native",
+    "project-intelligence",
+    "prumo-navigation",
+    "refactoring",
+    "release-engineering",
+    "screen-reader",
+    "secrets-security",
+    "secure-coding",
+    "security-review",
+    "state-management",
+    "supply-chain-security",
+    "testing-quality",
+    "threat-modeling",
+    "ts-morph-context-indexing",
+    "ui-implementation",
+    "ui-ux-review",
+    "user-flows",
+    "ux-architecture",
+    "visual-qa",
+    "visual-reference-research",
+    "visual-regression",
+    "website-forensics",
+    "wireframing",
+    "zoom-reflow"
+  ],
+  "reasons": {
+    "architecture-quality": [
+      "core"
+    ],
+    "benchmarking": [
+      "risk",
+      "risk-rule:performance-risk"
+    ],
+    "clean-code": [
+      "core"
+    ],
+    "code-review": [
+      "core"
+    ],
+    "cognitive-clarity": [
+      "core"
+    ],
+    "competitor-analysis": [
+      "feature"
+    ],
+    "component-specification": [
+      "feature"
+    ],
+    "dependency-management": [
+      "core"
+    ],
+    "design-research": [
+      "feature"
+    ],
+    "design-system": [
+      "feature"
+    ],
+    "design-tokens": [
+      "feature"
+    ],
+    "documentation": [
+      "core"
+    ],
+    "error-handling": [
+      "core"
+    ],
+    "focus-management": [
+      "feature"
+    ],
+    "git-workflow": [
+      "core"
+    ],
+    "goal-management": [
+      "core"
+    ],
+    "information-architecture": [
+      "feature"
+    ],
+    "interaction-design": [
+      "feature"
+    ],
+    "interaction-research": [
+      "feature"
+    ],
+    "keyboard-accessibility": [
+      "feature"
+    ],
+    "lang-css": [
+      "stack"
+    ],
+    "lang-go": [
+      "stack"
+    ],
+    "lang-sql": [
+      "stack"
+    ],
+    "lang-typescript": [
+      "stack"
+    ],
+    "lean-progressive-context": [
+      "core"
+    ],
+    "memory-management": [
+      "risk"
+    ],
+    "motion-accessibility": [
+      "feature"
+    ],
+    "performance-native": [
+      "risk",
+      "risk-rule:performance-risk"
+    ],
+    "project-intelligence": [
+      "core"
+    ],
+    "prumo-navigation": [
+      "core"
+    ],
+    "refactoring": [
+      "core"
+    ],
+    "release-engineering": [
+      "core"
+    ],
+    "screen-reader": [
+      "feature"
+    ],
+    "secrets-security": [
+      "risk"
+    ],
+    "secure-coding": [
+      "risk",
+      "risk-rule:security-risk"
+    ],
+    "security-review": [
+      "risk",
+      "risk-rule:security-risk"
+    ],
+    "state-management": [
+      "feature"
+    ],
+    "supply-chain-security": [
+      "risk"
+    ],
+    "testing-quality": [
+      "core"
+    ],
+    "threat-modeling": [
+      "risk",
+      "risk-rule:security-risk"
+    ],
+    "ts-morph-context-indexing": [
+      "stack"
+    ],
+    "ui-implementation": [
+      "feature"
+    ],
+    "ui-ux-review": [
+      "feature"
+    ],
+    "user-flows": [
+      "feature"
+    ],
+    "ux-architecture": [
+      "feature"
+    ],
+    "visual-qa": [
+      "feature"
+    ],
+    "visual-reference-research": [
+      "feature"
+    ],
+    "visual-regression": [
+      "feature"
+    ],
+    "website-forensics": [
+      "feature"
+    ],
+    "wireframing": [
+      "feature"
+    ],
+    "zoom-reflow": [
+      "feature"
+    ]
+  }
+}

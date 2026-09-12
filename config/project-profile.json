@@ -1,0 +1,53 @@
+{
+  "version": 2,
+  "project": {
+    "name": "nanotube-web",
+    "type": ["desktop-gui", "web-application"],
+    "description": "Ultra-light, modern desktop YouTube client for Linux and modest hardware (Wails v3 + Svelte + Tailwind + Go + SQLite)."
+  },
+  "stack": {
+    "languages": ["go", "typescript", "svelte"],
+    "frameworks": ["wails-v3", "svelte5", "tailwind", "goose"],
+    "runtimes": ["native", "webkit"],
+    "database": ["sqlite"]
+  },
+  "features": [
+    "desktop-gui",
+    "web-application",
+    "ui",
+    "clean-architecture",
+    "exhaustive-testing",
+    "security-contract",
+    "living-plan",
+    "continuous-documentation"
+  ],
+  "quality": {
+    "coverage_minimum": 85,
+    "static_analysis": "strict",
+    "security_sast": true,
+    "performance_benchmarks": true,
+    "e2e_testing": true
+  },
+  "risk": [
+    "security",
+    "performance-critical"
+  ],
+  "ai": {
+    "orchestrator": "prumo",
+    "autonomy": "agentic",
+    "preferred_models": [
+      {
+        "id": "google/gemini-2.5-pro",
+        "provider": "google"
+      },
+      {
+        "id": "anthropic/claude-3-7-sonnet",
+        "provider": "anthropic"
+      },
+      {
+        "id": "openai/gpt-4o",
+        "provider": "openai"
+      }
+    ]
+  }
+}

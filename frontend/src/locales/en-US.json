@@ -1,0 +1,106 @@
+{
+  "app": {
+    "mainContent": "Main content",
+    "loadingModule": "Loading module…",
+    "videoPlayer": "Video player"
+  },
+  "navigation": {
+    "home": "Home",
+    "subscriptions": "Subscriptions",
+    "channels": "Channels",
+    "search": "Search",
+    "playlists": "Playlists",
+    "queue": "Queue",
+    "library": "Library",
+    "settings": "Settings",
+    "back": "Back",
+    "forward": "Forward",
+    "collapseSidebar": "Collapse sidebar",
+    "expandSidebar": "Expand sidebar"
+  },
+  "actions": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "close": "Close",
+    "delete": "Delete",
+    "edit": "Edit",
+    "refresh": "Refresh",
+    "loadMore": "Load more",
+    "play": "Play",
+    "pause": "Pause",
+    "addToQueue": "Add to queue",
+    "addToPlaylist": "Add to playlist",
+    "createPlaylist": "Create playlist"
+  },
+  "player": {
+    "quality": "Quality",
+    "automatic": "Automatic",
+    "audioOnly": "Audio only",
+    "description": "Description",
+    "next": "Next video",
+    "previous": "Previous video",
+    "fullscreen": "Fullscreen",
+    "exitFullscreen": "Exit fullscreen",
+    "openQueue": "Open queue"
+  },
+  "search": {
+    "placeholder": "Search YouTube",
+    "noFilters": "All types",
+    "clear": "Clear search"
+  },
+  "feedback": {
+    "loading": "Loading…",
+    "updating": "Updating…",
+    "error": "This action could not be completed.",
+    "empty": "No results found."
+  },
+  "settings": {
+    "language": "Language",
+    "theme": "Theme",
+    "dark": "Dark",
+    "light": "Light",
+    "guest": "Guest"
+  },
+  "player": {
+    "error": {
+      "retry": "Try again",
+      "generic": "The player could not load this quality ({reason}).",
+      "codes": {
+        "1": "loading interrupted — code 1",
+        "2": "network failure — code 2",
+        "3": "media decode failure — code 3",
+        "4": "format or codec not supported by the system — code 4"
+      },
+      "hlsUnsupported": "Could not load HLS support.",
+      "noCompatible": "No remaining compatible formats could be loaded.",
+      "audioFailed": "Adaptive audio track failed.",
+      "fallbackAutomatic": "Automatic mode restored.",
+      "switchFailed": "The selected quality failed ({detail})."
+    },
+    "quality": {
+      "automatic": "Automatic",
+      "audioOnly": "Audio only",
+      "loading": "Loading",
+      "unavailable": "Unavailable"
+    },
+    "mediaSession": {
+      "title": "Playback in progress",
+      "titleFormat": "Playing on HummTube"
+    },
+    "loading": {
+      "aria_label": "Loading video",
+      "phase": {
+        "initializing": "Initializing…",
+        "resolving": "Resolving stream…",
+        "buffering": "Buffering…",
+        "ready": "Ready"
+      },
+      "resolving": "Resolving stream…",
+      "buffering": "Buffering…",
+      "buffering_progress": "Buffering {percent}%",
+      "ready": "Ready",
+      "initializing": "Initializing…",
+      "cancel": "Cancel"
+    }
+  }
+}

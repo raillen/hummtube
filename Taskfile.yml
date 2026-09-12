@@ -1,0 +1,276 @@
+version: '3'
+
+vars:
+  APP_NAME: hummtube
+  BIN_DIR: bin
+  VERSION: 0.1.0-dev
+  VITE_PORT: '{{.WAILS_VITE_PORT | default 5173}}'
+
+tasks:
+  default:
+    desc: Executa o gate padrão de verificação
+    cmds:
+      - task: verify
+
+  dev:
+    desc: Inicia HummTube em modo nativo com Hot Reload (Wails v3)
+    cmds:
+      - wails3 dev -config ./build/config.yml -port {{.VITE_PORT}}
+
+  dev:hummiptv:
+    desc: Inicia HummIPTV em modo nativo com Hot Reload (Wails v3)
+    cmds:
+      - wails3 dev -config ./build/config.hummiptv.yml -port {{.VITE_PORT}}
+
+  dev:hummmusic:
+    desc: Inicia HummMusic em modo nativo com Hot Reload (Wails v3)
+    cmds:
+      - wails3 dev -config ./build/config.hummmusic.yml -port {{.VITE_PORT}}
+
+  dev:nanoiptv:
+    desc: Alias legado para dev:hummiptv
+    cmds:
+      - task: dev:hummiptv
+
+  dev:nanomusic:
+    desc: Alias legado para dev:hummmusic
+    cmds:
+      - task: dev:hummmusic
+
+  build:
+    desc: Compila a aplicação completa para produção
+    cmds:
+      - task: frontend:build
+      - task: backend:build
+
+  frontend:install:
+    desc: Instala dependências do frontend
+    dir: frontend
+    sources:
+      - package.json
+      - package-lock.json
+    generates:
+      - node_modules/**/*
+    cmds:
+      - npm ci
+
+  frontend:dev:
+    desc: Inicia o Vite com HMR na porta fornecida pelo Wails v3
+    dir: frontend
+    deps:
+      - task: frontend:install
+    env:
+      NANOSUITE_APP: '{{.APP_TARGET | default "hummtube"}}'
+    cmds:
+      - npm run dev
+
+  frontend:build:
+    desc: Constrói os bundles Svelte independentes
+    dir: frontend
+    cmds:
+      - npm run build
+
+  frontend:build:hummtube:
+    desc: Constrói somente o bundle HummTube
+    dir: frontend
+    cmds:
+      - npm run build:hummtube
+
+  frontend:build:nanotube:
+    desc: Alias legado para frontend:build:hummtube
+    cmds:
+      - task: frontend:build:hummtube
+
+  frontend:check:
+    desc: Executa verificação de tipos e lint do Svelte/TypeScript
+    dir: frontend
+    cmds:
+      - npm run check
+
+  tooling:check:
+    desc: Verifica ferramentas obrigatórias e opcionais para uma operação
+    cmds:
+      - bash packaging/check-tools.sh '{{.TARGET | default "verify"}}'
+
+  backend:build:
+    desc: Compila os executáveis HummTube, HummIPTV e HummMusic (com aliases legados)
+    cmds:
+      - mkdir -p {{.BIN_DIR}}
+      - go build -ldflags="-s -w -X 'github.com/nanotube/nanotube-web/internal/diagnostics.Version={{.VERSION}}'" -o {{.BIN_DIR}}/hummtube{{exeExt}} ./cmd/hummtube
+      - go build -ldflags="-s -w -X 'github.com/nanotube/nanotube-web/internal/diagnostics.Version={{.VERSION}}'" -o {{.BIN_DIR}}/hummiptv{{exeExt}} ./cmd/hummiptv
+      - go build -ldflags="-s -w -X 'github.com/nanotube/nanotube-web/internal/diagnostics.Version={{.VERSION}}'" -o {{.BIN_DIR}}/hummmusic{{exeExt}} ./cmd/hummmusic
+      - cp {{.BIN_DIR}}/hummtube{{exeExt}} {{.BIN_DIR}}/nanotube-web{{exeExt}}
+      - cp {{.BIN_DIR}}/hummiptv{{exeExt}} {{.BIN_DIR}}/nanoiptv{{exeExt}}
+      - cp {{.BIN_DIR}}/hummmusic{{exeExt}} {{.BIN_DIR}}/nanomusic{{exeExt}}
+
+  backend:build:dev:
+    desc: Compila o backend com símbolos para o watcher nativo do Wails v3
+    cmds:
+      - mkdir -p {{.BIN_DIR}}
+      - go build -buildvcs=false -gcflags=all="-N -l" -o {{.BIN_DIR}}/{{.APP_NAME}}{{exeExt}} ./cmd/hummtube
+      - cp {{.BIN_DIR}}/{{.APP_NAME}}{{exeExt}} {{.BIN_DIR}}/nanotube-web{{exeExt}}
+
+  backend:build:dev:hummiptv:
+    desc: Compila HummIPTV com símbolos para o watcher nativo
+    cmds:
+      - mkdir -p {{.BIN_DIR}}
+      - go build -buildvcs=false -gcflags=all="-N -l" -o {{.BIN_DIR}}/hummiptv{{exeExt}} ./cmd/hummiptv
+      - cp {{.BIN_DIR}}/hummiptv{{exeExt}} {{.BIN_DIR}}/nanoiptv{{exeExt}}
+
+  backend:build:dev:hummmusic:
+    desc: Compila HummMusic com símbolos para o watcher nativo
+    cmds:
+      - mkdir -p {{.BIN_DIR}}
+      - go build -buildvcs=false -gcflags=all="-N -l" -o {{.BIN_DIR}}/hummmusic{{exeExt}} ./cmd/hummmusic
+      - cp {{.BIN_DIR}}/hummmusic{{exeExt}} {{.BIN_DIR}}/nanomusic{{exeExt}}
+
+  backend:build:dev:nanoiptv:
+    cmds:
+      - task: backend:build:dev:hummiptv
+
+  backend:build:dev:nanomusic:
+    cmds:
+      - task: backend:build:dev:hummmusic
+
+  run:dev:
+    desc: Executa o binário desktop observado pelo Wails v3
+    env:
+      NANOTUBE_DEVTOOLS: '1'
+    cmds:
+      - ./{{.BIN_DIR}}/{{.APP_NAME}}{{exeExt}}
+
+  run:dev:hummiptv:
+    desc: Executa o HummIPTV observado pelo Wails v3
+    cmds:
+      - ./{{.BIN_DIR}}/hummiptv{{exeExt}}
+
+  run:dev:hummmusic:
+    desc: Executa o HummMusic observado pelo Wails v3
+    cmds:
+      - ./{{.BIN_DIR}}/hummmusic{{exeExt}}
+
+  run:dev:nanoiptv:
+    cmds:
+      - task: run:dev:hummiptv
+
+  run:dev:nanomusic:
+    cmds:
+      - task: run:dev:hummmusic
+
+  test:
+    desc: Executa todos os testes unitários e de integração
+    cmds:
+      - task: test:go
+      - task: test:e2e
+
+  test:go:
+    desc: Executa os testes Go com detector de concorrência
+    cmds:
+      - go test -v -race ./internal/...
+
+  bench:
+    desc: Executa benchmarks locais e registra bundle/processo disponíveis
+    cmds:
+      - task: frontend:build:nanotube
+      - bash scripts/benchmark-local.sh
+
+  bench:hardware:
+    desc: Executa a coleta de referência para um host físico (sem dados pessoais)
+    cmds:
+      - task: bench
+
+  test:e2e:
+    desc: Constrói assets/binário atuais e executa a suíte E2E com Playwright
+    cmds:
+      - task frontend:build
+      - task backend:build
+      - cd frontend && npm run test:e2e
+
+  lint:
+    desc: Executa os linters de backend e frontend
+    cmds:
+      - go vet ./...
+      - task: frontend:check
+
+  package:deb:
+    desc: Constrói a preview Debian amd64 somente do NanoTube
+    deps:
+      - task: frontend:install
+    cmds:
+      - bash packaging/check-tools.sh deb
+      - NANOTUBE_PACKAGE_VERSION='{{.DEB_VERSION | default "0.1.0"}}' bash packaging/deb/build-deb.sh
+
+  package:deb:verify:
+    desc: Valida estrutura, metadados e dependências do pacote Debian
+    cmds:
+      - bash packaging/deb/test-package.sh 'build/nanotube-web_{{.DEB_VERSION | default "0.1.0"}}_amd64.deb'
+
+  package:appimage:
+    desc: Monta estrutura AppDir e AppImage
+    cmds:
+      - task: frontend:install
+      - bash packaging/check-tools.sh appimage
+      - NANOTUBE_PACKAGE_VERSION='{{.APPIMAGE_VERSION | default "0.1.0"}}' bash packaging/appimage/build-appimage.sh
+
+  package:appimage:verify:
+    desc: Valida o AppDir ou AppImage NanoTube sem executar a interface
+    cmds:
+      - bash packaging/check-tools.sh appimage
+      - bash packaging/appimage/test-appimage.sh '{{.APPIMAGE_TARGET | default "build/AppDir"}}'
+
+  package:rpm:
+    desc: Gera RPM Fedora/openSUSE/RHEL somente do NanoTube (requer rpmbuild)
+    deps:
+      - task: frontend:install
+    cmds:
+      - bash packaging/check-tools.sh rpm
+      - NANOTUBE_PACKAGE_VERSION='{{.RPM_VERSION | default "0.1.0"}}' bash packaging/rpm/build-rpm.sh
+
+  package:arch:
+    desc: Gera pacote Arch x86_64 somente do NanoTube (requer makepkg)
+    deps:
+      - task: frontend:install
+    cmds:
+      - bash packaging/check-tools.sh arch
+      - NANOTUBE_PACKAGE_VERSION='{{.ARCH_VERSION | default "0.1.0"}}' bash packaging/arch/build-arch.sh
+
+  package:windows:
+    desc: Cross-compila executável Windows amd64 (preview, janela nativa não testada)
+    deps:
+      - task: frontend:install
+    cmds:
+      - bash packaging/check-tools.sh windows
+      - NANOTUBE_PACKAGE_VERSION='{{.WINDOWS_VERSION | default "0.1.0"}}' bash packaging/windows/build-windows.sh
+
+  package:sbom:
+    desc: Gera um SBOM CycloneDX das dependências de build do NanoTube
+    cmds:
+      - bash packaging/check-tools.sh sbom
+      - NANOTUBE_PACKAGE_VERSION='{{.SBOM_VERSION | default "0.1.0"}}' bash packaging/sbom/generate-sbom.sh
+
+  package:sbom:verify:
+    desc: Valida o SBOM CycloneDX gerado
+    cmds:
+      - bash packaging/sbom/test-sbom.sh '{{.SBOM_TARGET | default "build/sbom/nanotube-web-0.1.0.cdx.json"}}'
+
+  package:all:
+    desc: Gera pacotes disponíveis e o inventário SBOM do NanoTube
+    cmds:
+      - task: package:deb
+      - task: package:appimage
+      - task: package:sbom
+
+  verify:
+    desc: Gate completo de verificação (lint + testes + build check)
+    cmds:
+      - task: tooling:check
+      - task: lint
+      - task: test
+      - task: build
+      - echo "Gate de verificação concluído com sucesso!"
+
+  clean:
+    desc: Remove arquivos temporários e builds
+    cmds:
+      - rm -rf bin/ frontend/dist/nanotube/assets frontend/dist/nanoiptv/assets frontend/dist/nanomusic/assets frontend/node_modules/.vite
+      - rm -f frontend/dist/nanotube/index.html frontend/dist/nanoiptv/index.html frontend/dist/nanomusic/index.html

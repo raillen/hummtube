@@ -1,0 +1,39 @@
+# Maintainer: NanoTube Team <maintainer@nanotube.local>
+pkgname=nanotube-web
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Ultra-light desktop YouTube client for Linux and modest hardware"
+arch=('x86_64')
+url="https://github.com/nanotube/nanotube-web"
+license=('MIT')
+depends=('glibc' 'ca-certificates' 'gtk4' 'webkitgtk-6.0')
+optdepends=(
+    'yt-dlp: explicit stream extractor backend'
+    'deno: fast javascript runtime for PO Token generation'
+    'nodejs: alternative javascript runtime'
+)
+makedepends=('go' 'nodejs' 'npm')
+source=("$pkgname-$pkgver.tar.gz")
+# Substitua SKIP pelo checksum publicado ao promover uma release.
+# SKIP permanece permitido somente para builds locais da receita planejada.
+sha256sums=('SKIP')
+
+build() {
+    cd "$srcdir/$pkgname-$pkgver"
+    # O tarball de origem exclui node_modules/dist; instale antes de compilar.
+    cd frontend && npm ci --no-audit --no-fund && npm run build:nanotube && cd ..
+    go build -buildvcs=false -trimpath \
+        -ldflags="-s -w -X github.com/nanotube/nanotube-web/internal/diagnostics.Version=$pkgver" \
+        -o bin/nanotube-web ./cmd/nanotube-web
+}
+
+package() {
+    cd "$srcdir/$pkgname-$pkgver"
+    install -Dm755 bin/nanotube-web "$pkgdir/usr/bin/nanotube-web"
+    
+    mkdir -p "$pkgdir/usr/share/nanotube-web/frontend/dist/nanotube"
+    cp -a frontend/dist/nanotube/. "$pkgdir/usr/share/nanotube-web/frontend/dist/nanotube/"
+    
+    install -Dm644 packaging/nanotube-web.desktop "$pkgdir/usr/share/applications/nanotube-web.desktop"
+    install -Dm644 packaging/nanotube-web.svg "$pkgdir/usr/share/icons/hicolor/scalable/apps/nanotube-web.svg"
+}

@@ -1,0 +1,108 @@
+[
+  {
+    "contract_id": "product.vision",
+    "sources": [
+      "docs/00-product/PRODUCT.md",
+      "README.md",
+      "ATLAS.md"
+    ],
+    "ownership": "human-maintained",
+    "authority": "canonical-documentation",
+    "answered_questions": [
+      "What problem does the product solve?"
+    ]
+  },
+  {
+    "contract_id": "project.scope",
+    "sources": [
+      "docs/00-product/SCOPE_AND_ROADMAP.md",
+      "docs/00-product/REQUIREMENTS.md",
+      "docs/00-product/NANOSUITE_PLAN.md"
+    ],
+    "ownership": "human-maintained",
+    "authority": "canonical-documentation",
+    "answered_questions": [
+      "What is explicitly out of scope?"
+    ]
+  },
+  {
+    "contract_id": "architecture.system",
+    "sources": [
+      "docs/01-architecture/ARCHITECTURE.md",
+      "docs/01-architecture/DATA_FLOWS.md",
+      "docs/01-architecture/CONTRACTS.md",
+      "docs/03-implementation/STACK.md"
+    ],
+    "ownership": "human-maintained",
+    "authority": "canonical-documentation",
+    "answered_questions": [
+      "What owns canonical state?",
+      "Which components may mutate it?"
+    ]
+  },
+  {
+    "contract_id": "testing.strategy",
+    "sources": [
+      "docs/04-quality/TEST_STRATEGY.md",
+      "docs/04-quality/DEFINITION_OF_DONE.md",
+      "docs/04-quality/UI_UX_TESTS.md",
+      "docs/development/testing-strategy.md"
+    ],
+    "ownership": "human-maintained",
+    "authority": "canonical-documentation",
+    "answered_questions": [
+      "Which checks block completion?"
+    ]
+  },
+  {
+    "contract_id": "security.trust",
+    "sources": [
+      "docs/05-security/SECURITY.md",
+      "docs/05-security/THREAT_MODEL.md",
+      "docs/05-security/COMPLIANCE_NOTES.md"
+    ],
+    "ownership": "human-maintained",
+    "authority": "canonical-documentation",
+    "answered_questions": [
+      "Which actions require explicit approval?"
+    ]
+  },
+  {
+    "contract_id": "installation.lifecycle",
+    "sources": [
+      "docs/07-operations/PACKAGING_AND_DISTRIBUTION.md",
+      "docs/07-operations/OPERATIONS.md"
+    ],
+    "ownership": "human-maintained",
+    "authority": "canonical-documentation",
+    "answered_questions": [
+      "What happens after interrupted update?"
+    ]
+  },
+  {
+    "contract_id": "cli.reference",
+    "sources": [
+      "docs/08-user/SHORTCUTS.md",
+      "docs/07-operations/OPERATIONS.md",
+      "docs/07-operations/TROUBLESHOOTING.md"
+    ],
+    "ownership": "human-maintained",
+    "authority": "canonical-documentation",
+    "answered_questions": [
+      "Which commands are stable?"
+    ]
+  },
+  {
+    "contract_id": "ui.documentation",
+    "sources": [
+      "docs/02-ui-ux/UI_UX.md",
+      "docs/02-ui-ux/FLOWS_AND_WIREFRAMES.md",
+      "docs/02-ui-ux/ACCESSIBILITY.md"
+    ],
+    "ownership": "human-maintained",
+    "authority": "canonical-documentation",
+    "answered_questions": [
+      "Which user states must be supported?"
+    ]
+  }
+]

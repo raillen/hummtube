@@ -1,0 +1,39 @@
+# Configuração consumida pelo watcher nativo de `wails3 dev`.
+version: '3'
+
+info:
+  companyName: "HummSuite"
+  productName: "HummTube"
+  productIdentifier: "io.hummtube.desktop"
+  description: "Cliente desktop YouTube leve para Linux"
+  copyright: "HummSuite contributors"
+  comments: "Wails v3 + Svelte"
+  version: "0.1.0"
+
+dev_mode:
+  root_path: .
+  log_level: info
+  debounce: 750
+  ignore:
+    dir:
+      - .git
+      - bin
+      - frontend
+      - node_modules
+    file:
+      - .DS_Store
+      - .gitignore
+      - .gitkeep
+      - "*_test.go"
+    watched_extension:
+      - "*.go"
+    git_ignore: true
+  executes:
+    - cmd: wails3 task frontend:install
+      type: once
+    - cmd: wails3 task frontend:dev APP_TARGET=nanotube
+      type: background
+    - cmd: wails3 task backend:build:dev
+      type: blocking
+    - cmd: wails3 task run:dev
+      type: primary

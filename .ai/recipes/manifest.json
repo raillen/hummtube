@@ -1,0 +1,26 @@
+{
+  "generated_by": {
+    "prumo": "0.2.0"
+  },
+  "recipes": [
+    "documentation-refactor",
+    "security-review",
+    "ui-feature",
+    "ui-review"
+  ],
+  "reasons": {
+    "documentation-refactor": [
+      "skill-match"
+    ],
+    "security-review": [
+      "risk",
+      "risk-rule:security-risk"
+    ],
+    "ui-feature": [
+      "feature"
+    ],
+    "ui-review": [
+      "feature"
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+[Desktop Entry]
+Name=NanoTube Web
+Comment=Cliente desktop YouTube ultra-leve para hardware modesto e Linux
+Exec=nanotube-web %u
+Icon=nanotube-web
+Terminal=false
+Type=Application
+Categories=AudioVideo;Video;Player;
+MimeType=x-scheme-handler/nanotube;
+Keywords=youtube;video;player;streaming;lightweight;
+Actions=TVMode;
+
+[Desktop Action TVMode]
+Name=Iniciar no Modo TV (10-Foot UI)
+Exec=nanotube-web --tv

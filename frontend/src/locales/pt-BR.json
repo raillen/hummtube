@@ -1,0 +1,106 @@
+{
+  "app": {
+    "mainContent": "Conteúdo principal",
+    "loadingModule": "Carregando módulo…",
+    "videoPlayer": "Player de vídeo"
+  },
+  "navigation": {
+    "home": "Início",
+    "subscriptions": "Inscrições",
+    "channels": "Canais",
+    "search": "Pesquisa",
+    "playlists": "Playlists",
+    "queue": "Fila",
+    "library": "Biblioteca",
+    "settings": "Configurações",
+    "back": "Voltar",
+    "forward": "Avançar",
+    "collapseSidebar": "Recolher menu lateral",
+    "expandSidebar": "Expandir menu lateral"
+  },
+  "actions": {
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "close": "Fechar",
+    "delete": "Excluir",
+    "edit": "Editar",
+    "refresh": "Atualizar",
+    "loadMore": "Carregar mais",
+    "play": "Reproduzir",
+    "pause": "Pausar",
+    "addToQueue": "Adicionar à fila",
+    "addToPlaylist": "Adicionar à playlist",
+    "createPlaylist": "Criar playlist"
+  },
+  "player": {
+    "quality": "Qualidade",
+    "automatic": "Automático",
+    "audioOnly": "Somente áudio",
+    "description": "Descrição",
+    "next": "Próximo vídeo",
+    "previous": "Vídeo anterior",
+    "fullscreen": "Tela cheia",
+    "exitFullscreen": "Sair da tela cheia",
+    "openQueue": "Abrir fila"
+  },
+  "search": {
+    "placeholder": "Pesquisar no YouTube",
+    "noFilters": "Todos os tipos",
+    "clear": "Limpar pesquisa"
+  },
+  "feedback": {
+    "loading": "Carregando…",
+    "updating": "Atualizando…",
+    "error": "Não foi possível concluir esta ação.",
+    "empty": "Nenhum resultado encontrado."
+  },
+  "settings": {
+    "language": "Idioma",
+    "theme": "Tema",
+    "dark": "Escuro",
+    "light": "Claro",
+    "guest": "Visitante"
+  },
+  "player": {
+    "error": {
+      "retry": "Tentar novamente",
+      "generic": "O player não conseguiu carregar esta qualidade ({reason}).",
+      "codes": {
+        "1": "carregamento interrompido — código 1",
+        "2": "falha de rede — código 2",
+        "3": "falha ao decodificar a mídia — código 3",
+        "4": "formato ou codec não suportado pelo sistema — código 4"
+      },
+      "hlsUnsupported": "Não foi possível carregar o suporte a HLS.",
+      "noCompatible": "Nenhum formato compatível restante pôde ser carregado.",
+      "audioFailed": "A faixa de áudio adaptativa falhou.",
+      "fallbackAutomatic": "O modo automático foi restaurado.",
+      "switchFailed": "A qualidade selecionada falhou ({detail})."
+    },
+    "quality": {
+      "automatic": "Automática",
+      "audioOnly": "Somente áudio",
+      "loading": "Carregando",
+      "unavailable": "Indisponível"
+    },
+    "mediaSession": {
+      "title": "Reprodução em andamento",
+      "titleFormat": "Reproduzindo no HummTube"
+    },
+    "loading": {
+      "aria_label": "Carregando vídeo",
+      "phase": {
+        "initializing": "Iniciando…",
+        "resolving": "Obtendo stream…",
+        "buffering": "Bufferizando…",
+        "ready": "Pronto"
+      },
+      "resolving": "Obtendo stream…",
+      "buffering": "Bufferizando…",
+      "buffering_progress": "Carregando {percent}%",
+      "ready": "Pronto",
+      "initializing": "Iniciando…",
+      "cancel": "Cancelar"
+    }
+  }
+}

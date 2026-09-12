@@ -1,0 +1,30 @@
+# Configuração do modo de desenvolvimento nativo do NanoIPTV.
+version: '3'
+
+info:
+  companyName: "NanoSuite"
+  productName: "NanoIPTV"
+  productIdentifier: "io.nanotube.nanoiptv"
+  description: "Player desktop dedicado a IPTV, M3U e EPG"
+  copyright: "NanoSuite contributors"
+  comments: "Wails v3 + Svelte"
+  version: "0.1.0"
+
+dev_mode:
+  root_path: .
+  log_level: info
+  debounce: 750
+  ignore:
+    dir: [.git, bin, frontend, node_modules]
+    file: [.DS_Store, .gitignore, .gitkeep, "*_test.go"]
+    watched_extension: ["*.go"]
+    git_ignore: true
+  executes:
+    - cmd: wails3 task frontend:install
+      type: once
+    - cmd: wails3 task frontend:dev APP_TARGET=nanoiptv
+      type: background
+    - cmd: wails3 task backend:build:dev:nanoiptv
+      type: blocking
+    - cmd: wails3 task run:dev:nanoiptv
+      type: primary

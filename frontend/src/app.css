@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg: #09090b;
+  --color-surface: #18181b;
+  --color-surface-hover: #27272a;
+  --color-border: #27272a;
+  --color-text: #fafafa;
+  --color-text-muted: #a1a1aa;
+  --color-primary: #ef4444;
+  --color-primary-hover: #dc2626;
+  --color-primary-rgb: 239, 68, 68;
+  color-scheme: dark;
+}
+
+:root.light {
+	--color-bg: #eef1f4;
+	--color-surface: #f7f8fa;
+	--color-surface-hover: #e3e7ec;
+	--color-border: #cfd5dc;
+	--color-text: #17202a;
+	--color-text-muted: #586474;
+	color-scheme: light;
+}
+
+select,
+select option,
+select optgroup {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+}
+
+select:disabled,
+select option:disabled {
+  color: var(--color-text-muted);
+}
+
+:root.tv-mode {
+  --color-bg: #030712;
+  --color-surface: #111827;
+  --color-surface-hover: #1f2937;
+  --color-border: #374151;
+  --color-text: #f9fafb;
+  --color-text-muted: #9ca3af;
+  --color-focus: #22d3ee;
+  font-size: 18px;
+}
+
+/* Acessibilidade: Anel de foco visível universal para teclado dinâmico */
+:focus-visible {
+  outline: 2px solid var(--color-primary, #38bdf8);
+  outline-offset: 2px;
+}
+
+/* Foco de Alto Contraste no Modo TV */
+.tv-mode :focus-visible,
+.tv-focusable:focus-visible,
+.tv-focusable.is-tv-focused {
+  outline: 3px solid var(--color-focus, #22d3ee) !important;
+  outline-offset: 3px;
+  transform: scale(1.03);
+  transition: transform 0.15s ease, outline 0.15s ease;
+  z-index: 20;
+}
+
+/* Suporte a preferência de movimento reduzido (a11y) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Layout leanback: sidebar compacta, grade respirável e alvos maiores só no Modo TV */
+.tv-mode [data-component='app-sidebar'] {
+  width: 4rem;
+}
+
+.tv-mode [data-component='app-sidebar'] [data-component='sidebar-label'],
+.tv-mode [data-component='app-sidebar'] [data-component='resource-usage-card'] {
+  display: none;
+}
+
+.tv-mode [data-component='video-grid-cards'] {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .tv-mode [data-component='video-grid-cards'] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  .tv-mode [data-component='video-grid-cards'] {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1800px) {
+  .tv-mode [data-component='video-grid-cards'] {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.tv-mode [data-component='video-card-title'] {
+  font-size: 1.05rem;
+  line-height: 1.4;
+}
+
+.tv-mode [data-component='video-card-channel'] {
+  font-size: 0.95rem;
+}
+
+.tv-mode [data-component='video-card-action'] {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding: 0.625rem;
+  opacity: 1;
+}
+
+.tv-mode [data-component='player-seek-bar'] {
+  height: 0.625rem;
+}
+
+.tv-mode [data-component='player-volume-bar'] {
+  height: 0.5rem;
+  width: 6rem;
+}
+
+.tv-mode [data-component='player-control-button'] {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-hover);
+  border-radius: 3px;
+}

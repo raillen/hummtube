@@ -1,0 +1,7 @@
+#EXTM3U
+#EXTINF:-1 tvg-id="fixture-news" tvg-name="Notícias Fixture" group-title="TV" tvg-type="tv",Notícias Fixture
+https://media.example.invalid/live/news.m3u8
+#EXTINF:-1 tvg-name="Filme Fixture" group-title="Filmes" tvg-type="movie",Filme Fixture
+https://media.example.invalid/movie/fixture.mp4
+#EXTINF:-1 tvg-name="Série Fixture S01E02" group-title="Séries" tvg-type="series",Série Fixture S01E02
+https://media.example.invalid/series/fixture/s01e02.mp4

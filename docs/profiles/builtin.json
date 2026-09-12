@@ -1,0 +1,109 @@
+[
+  {
+    "id": "core-software",
+    "version": 1,
+    "description": "Common engineering foundation.",
+    "capabilities": [
+      "core"
+    ],
+    "contracts": [
+      "product.vision",
+      "project.scope",
+      "architecture.system",
+      "testing.strategy",
+      "security.trust",
+      "cli.reference",
+      "installation.lifecycle"
+    ]
+  },
+  {
+    "id": "cli",
+    "version": 1,
+    "description": "Command-line projects.",
+    "capabilities": [
+      "cli"
+    ],
+    "extends": [
+      "core-software"
+    ],
+    "contracts": [
+      "cli.reference"
+    ]
+  },
+  {
+    "id": "web-application",
+    "version": 1,
+    "description": "Web applications.",
+    "capabilities": [
+      "web-application",
+      "ui"
+    ],
+    "extends": [
+      "core-software"
+    ],
+    "contracts": [
+      "ui.documentation"
+    ]
+  },
+  {
+    "id": "desktop-gui",
+    "version": 1,
+    "description": "Desktop graphical applications.",
+    "capabilities": [
+      "desktop-gui",
+      "ui"
+    ],
+    "extends": [
+      "core-software"
+    ],
+    "contracts": [
+      "ui.documentation"
+    ]
+  },
+  {
+    "id": "api-service",
+    "version": 1,
+    "description": "HTTP/API services.",
+    "capabilities": [
+      "api-service"
+    ],
+    "extends": [
+      "core-software"
+    ],
+    "contracts": [
+      "architecture.system",
+      "testing.strategy",
+      "security.trust"
+    ]
+  },
+  {
+    "id": "compiler",
+    "version": 1,
+    "description": "Compilers and language tooling.",
+    "capabilities": [
+      "compiler"
+    ],
+    "extends": [
+      "core-software"
+    ],
+    "contracts": [
+      "architecture.system",
+      "testing.strategy"
+    ]
+  },
+  {
+    "id": "library",
+    "version": 1,
+    "description": "Libraries and packages.",
+    "capabilities": [
+      "library"
+    ],
+    "extends": [
+      "core-software"
+    ],
+    "contracts": [
+      "architecture.system",
+      "testing.strategy"
+    ]
+  }
+]

@@ -1,0 +1,15 @@
+Package: nanotube-web
+Version: 0.1.0
+Section: video
+Priority: optional
+Architecture: amd64
+Depends: libc6 (>= 2.38), ca-certificates, libgtk-4-1, libwebkitgtk-6.0-4
+Recommends: yt-dlp, nodejs, gstreamer1.0-plugins-base, gstreamer1.0-plugins-good, gstreamer1.0-plugins-bad, gstreamer1.0-libav, xdg-utils, gnome-keyring | keepassxc
+Maintainer: NanoTube Team <maintainer@nanotube.local>
+Homepage: https://github.com/nanotube/nanotube-web
+Description: Cliente desktop leve para reprodução de conteúdo do YouTube
+ HummTube (anteriormente NanoTube Web) é um cliente desktop construído com Go, Wails e Svelte.
+ A reprodução avançada usa o yt-dlp instalado pelo sistema. Um runtime
+ JavaScript, como Node.js, pode ser necessário para formatos protegidos por
+ desafios recentes do YouTube. Os plugins GStreamer recomendados fornecem os
+ codecs usuais. Nenhum desses componentes é baixado pelo próprio aplicativo.

@@ -1,0 +1,21 @@
+{
+  "created_paths": [
+    "/home/raillen/Documentos/Projetos/nanotube-web/GEMINI.md",
+    "/home/raillen/Documentos/Projetos/nanotube-web/.agents/config.json",
+    "/home/raillen/Documentos/Projetos/nanotube-web/.agents/rules/testing-quality.md",
+    "/home/raillen/Documentos/Projetos/nanotube-web/.agents/rules/security.md",
+    "/home/raillen/Documentos/Projetos/nanotube-web/.agents/rules/coding-standards.md",
+    "/home/raillen/Documentos/Projetos/nanotube-web/.agents/subagents/architect.md",
+    "/home/raillen/Documentos/Projetos/nanotube-web/.agents/subagents/executor.md",
+    "/home/raillen/Documentos/Projetos/nanotube-web/.agents/subagents/verifier.md",
+    "/home/raillen/Documentos/Projetos/nanotube-web/.agents/hooks.json",
+    "/home/raillen/Documentos/Projetos/nanotube-web/.agents/skills/clean-code/SKILL.md",
+    "/home/raillen/Documentos/Projetos/nanotube-web/.agents/skills/testing-quality/SKILL.md",
+    "/home/raillen/Documentos/Projetos/nanotube-web/.agents/skills/secure-coding/SKILL.md"
+  ],
+  "generator": "connector-antigravity",
+  "managed": true,
+  "prumo_generated": true,
+  "prumo_version": "0.5.1",
+  "target": "antigravity"
+}

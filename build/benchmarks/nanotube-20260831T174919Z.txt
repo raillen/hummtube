@@ -1,0 +1,97 @@
+NanoTube local performance benchmark
+timestamp_utc=20260831T174919Z
+host=Linux arch-pc 7.1.8-arch1-3 #1 SMP PREEMPT_DYNAMIC Tue, 11 Aug 2026 09:16:08 +0000 x86_64 GNU/Linux
+session=x11
+display=:0
+
+[go benchmarks]
+PASS
+ok  	github.com/nanotube/nanotube-web/internal/app	0.010s
+PASS
+ok  	github.com/nanotube/nanotube-web/internal/auth	0.017s
+PASS
+ok  	github.com/nanotube/nanotube-web/internal/backup	0.012s
+PASS
+ok  	github.com/nanotube/nanotube-web/internal/desktop	0.512s
+PASS
+ok  	github.com/nanotube/nanotube-web/internal/diagnostics	0.015s
+PASS
+ok  	github.com/nanotube/nanotube-web/internal/domain	0.006s
+PASS
+ok  	github.com/nanotube/nanotube-web/internal/iptv	0.013s
+PASS
+ok  	github.com/nanotube/nanotube-web/internal/lastfm	0.012s
+PASS
+ok  	github.com/nanotube/nanotube-web/internal/launcher	0.204s
+goos: linux
+goarch: amd64
+pkg: github.com/nanotube/nanotube-web/internal/playback
+cpu: Intel(R) Core(TM) i7-3632QM CPU @ 2.20GHz
+BenchmarkBuildPlanFromInfo-4   	  113470	     10566 ns/op	    2312 B/op	      25 allocs/op
+BenchmarkClassifyFailure-4     	   16932	     70825 ns/op	     948 B/op	      13 allocs/op
+PASS
+ok  	github.com/nanotube/nanotube-web/internal/playback	3.252s
+PASS
+ok  	github.com/nanotube/nanotube-web/internal/product	0.007s
+goos: linux
+goarch: amd64
+pkg: github.com/nanotube/nanotube-web/internal/search
+cpu: Intel(R) Core(TM) i7-3632QM CPU @ 2.20GHz
+BenchmarkNormalizeOptions-4   	 2464832	       495.2 ns/op	      24 B/op	       2 allocs/op
+BenchmarkNanoRankPage-4       	    5956	    205817 ns/op	   40360 B/op	     255 allocs/op
+PASS
+ok  	github.com/nanotube/nanotube-web/internal/search	3.943s
+PASS
+ok  	github.com/nanotube/nanotube-web/internal/server	0.025s
+PASS
+ok  	github.com/nanotube/nanotube-web/internal/services	0.024s
+goos: linux
+goarch: amd64
+pkg: github.com/nanotube/nanotube-web/internal/storage
+cpu: Intel(R) Core(TM) i7-3632QM CPU @ 2.20GHz
+BenchmarkPlaylistVideosFiltered-4   	      26	  39521367 ns/op	  315701 B/op	    4044 allocs/op
+BenchmarkUpsertVideos-4             	       1	1510767306 ns/op	15482544 B/op	  250967 allocs/op
+PASS
+ok  	github.com/nanotube/nanotube-web/internal/storage	4.592s
+goos: linux
+goarch: amd64
+pkg: github.com/nanotube/nanotube-web/internal/suggestions
+cpu: Intel(R) Core(TM) i7-3632QM CPU @ 2.20GHz
+BenchmarkBuildHome/candidates_50-4         	    1225	    970419 ns/op	  283937 B/op	     568 allocs/op
+BenchmarkBuildHome/candidates_500-4        	      99	  13365809 ns/op	 2437024 B/op	    5076 allocs/op
+BenchmarkBuildHome/candidates_2000-4       	      16	  65652132 ns/op	11599473 B/op	   20098 allocs/op
+PASS
+ok  	github.com/nanotube/nanotube-web/internal/suggestions	4.746s
+PASS
+ok  	github.com/nanotube/nanotube-web/internal/sync	0.015s
+PASS
+ok  	github.com/nanotube/nanotube-web/internal/telemetry	0.008s
+PASS
+ok  	github.com/nanotube/nanotube-web/internal/youtubeapi	0.019s
+
+[frontend bundle]
+40K	/home/raillen/Documentos/Projetos/nanotube-web/frontend/dist/nanotube/assets/ChannelManagementView-DNX3mCx2.js
+40K	/home/raillen/Documentos/Projetos/nanotube-web/frontend/dist/nanotube/assets/ChannelManagementView-p0IOLvx7.js
+48K	/home/raillen/Documentos/Projetos/nanotube-web/frontend/dist/nanotube/assets/SearchView-BI09NuHj.js
+48K	/home/raillen/Documentos/Projetos/nanotube-web/frontend/dist/nanotube/assets/SearchView-BZVQxtGf.js
+48K	/home/raillen/Documentos/Projetos/nanotube-web/frontend/dist/nanotube/assets/SearchView-BfvtRHq4.js
+48K	/home/raillen/Documentos/Projetos/nanotube-web/frontend/dist/nanotube/assets/SearchView-CgxcD4bM.js
+48K	/home/raillen/Documentos/Projetos/nanotube-web/frontend/dist/nanotube/assets/SearchView-DhQGT1uV.js
+80K	/home/raillen/Documentos/Projetos/nanotube-web/frontend/dist/nanotube/assets/SettingsView-CrbT7Gx9.js
+84K	/home/raillen/Documentos/Projetos/nanotube-web/frontend/dist/nanotube/assets/SettingsView-CwIKvPE4.js
+84K	/home/raillen/Documentos/Projetos/nanotube-web/frontend/dist/nanotube/assets/SettingsView-D8nNuCdS.js
+84K	/home/raillen/Documentos/Projetos/nanotube-web/frontend/dist/nanotube/assets/SettingsView-DcNGP6_N.js
+84K	/home/raillen/Documentos/Projetos/nanotube-web/frontend/dist/nanotube/assets/SettingsView-zsm3BUnO.js
+244K	/home/raillen/Documentos/Projetos/nanotube-web/frontend/dist/nanotube/assets/index-CuWfxRV4.js
+248K	/home/raillen/Documentos/Projetos/nanotube-web/frontend/dist/nanotube/assets/index-CmTFKio6.js
+248K	/home/raillen/Documentos/Projetos/nanotube-web/frontend/dist/nanotube/assets/index-CsnNoE-c.js
+248K	/home/raillen/Documentos/Projetos/nanotube-web/frontend/dist/nanotube/assets/index-DkRoaj-3.js
+248K	/home/raillen/Documentos/Projetos/nanotube-web/frontend/dist/nanotube/assets/index-uBVg3vz2.js
+580K	/home/raillen/Documentos/Projetos/nanotube-web/frontend/dist/nanotube/assets/hls-EGfxlPg6.js
+3.7M	/home/raillen/Documentos/Projetos/nanotube-web/frontend/dist/nanotube
+3.7M	/home/raillen/Documentos/Projetos/nanotube-web/frontend/dist/nanotube/assets
+
+[process tools]
+ps=available
+smem=missing
+/usr/bin/time=missing

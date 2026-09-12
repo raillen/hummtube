@@ -1,0 +1,14 @@
+[Desktop Entry]
+Type=Application
+Name=NanoTube Web
+Comment=Cliente desktop leve para reprodução de conteúdo do YouTube
+Exec=nanotube-web
+Icon=nanotube-web
+Terminal=false
+Categories=AudioVideo;Video;Player;
+Keywords=youtube;video;player;streaming;lightweight;
+Actions=TVMode;
+
+[Desktop Action TVMode]
+Name=Iniciar no modo TV
+Exec=nanotube-web --tv

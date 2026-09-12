@@ -1,0 +1,42 @@
+# Binaries and build artifacts
+bin/
+build/bin/
+build/AppDir/
+build/deb-pkg/
+build/*.deb
+build/*.deb.sha256
+build/*.pkg.tar.*
+build/*.tar.gz
+build/*.sha256
+build/windows/*.exe
+build/windows/*.exe.sha256
+*.exe
+*.deb
+*.tar.gz
+*.tar.zst
+frontend/dist/
+frontend/node_modules/
+node_modules/
+
+# Prumo derived/runtime state
+.prumo/runtime/
+.prumo/cache/
+
+# Databases & local state
+*.db
+*.db-shm
+*.db-wal
+*.log
+
+# Test results and temporary artifacts
+.task/
+test-results/
+playwright-report/
+frontend/test-results/
+frontend/playwright-report/
+
+# OS / Editor artifacts
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

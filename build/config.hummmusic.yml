@@ -1,0 +1,30 @@
+# Configuração do modo de desenvolvimento nativo do HummMusic.
+version: '3'
+
+info:
+  companyName: "HummSuite"
+  productName: "HummMusic"
+  productIdentifier: "io.hummtube.hummmusic"
+  description: "Player desktop dedicado a música e podcasts"
+  copyright: "HummSuite contributors"
+  comments: "Wails v3 + Svelte"
+  version: "0.1.0"
+
+dev_mode:
+  root_path: .
+  log_level: info
+  debounce: 750
+  ignore:
+    dir: [.git, bin, frontend, node_modules]
+    file: [.DS_Store, .gitignore, .gitkeep, "*_test.go"]
+    watched_extension: ["*.go"]
+    git_ignore: true
+  executes:
+    - cmd: wails3 task frontend:install
+      type: once
+    - cmd: wails3 task frontend:dev APP_TARGET=hummmusic
+      type: background
+    - cmd: wails3 task backend:build:dev:hummmusic
+      type: blocking
+    - cmd: wails3 task run:dev:hummmusic
+      type: primary
